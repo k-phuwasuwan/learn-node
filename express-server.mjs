@@ -64,6 +64,20 @@ app.patch("/tasks/:id", (req, res) => {
   res.json(task);
 });
 
+app.delete("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const index = tasks.findIndex((task) => task.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      message: "ไม่พบงานนี้",
+    });
+  }
+
+  tasks.splice(index, 1);
+  res.status(204).end();
+});
+
 app.use((req, res) => {
   res.status(404).json({
     message: "Page not found",
