@@ -1,5 +1,15 @@
-console.log("เริ่มการทำงานของโปรแกรม")
-setTimeout(() => {
-    console.log("งานที่รอเสร็จแล้ว(2)")
-}, 2000)
-console.log("ทำงานอื่นต่อ(3)")
+function getStudyHours () {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(20)
+        },2000)
+    })
+}
+
+console.log("เริ่มโหลดข้อมูล...")
+
+getStudyHours().then((hours) => {
+      console.log(`เรียนสัปดาห์ละ ${hours} ชั่วโมง`);
+})
+
+console.log("ทำงานอื่นต่อ")
