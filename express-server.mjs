@@ -42,6 +42,28 @@ app.post("/tasks", (req, res) => {
   return res.status(201).json(task);
 });
 
+app.patch("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const task = tasks.find((task) => task.id === id);
+
+  if (!task) {
+    return res.status(404).json({
+      message: "ไม่พบงานนี้",
+    });
+  }
+
+  const completed = req.body?.completed;
+
+  if (typeof completed !== "boolean") {
+    return res.status(400).json({
+      message: "completed ต้องเป็น true หรือ false",
+    });
+  }
+
+  task.completed = completed;
+  res.json(task);
+});
+
 app.use((req, res) => {
   res.status(404).json({
     message: "Page not found",
