@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/k-phuwasuwan/learn-node/issues"
   },
-  "homepage": "https://github.com/k-phuwasuwan/learn-node#readme"
+  "homepage": "https://github.com/k-phuwasuwan/learn-node#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
 }
