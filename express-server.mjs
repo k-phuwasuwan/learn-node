@@ -84,6 +84,20 @@ app.use((req, res) => {
   });
 });
 
+app.use((err, req, res, next) => {
+  if (err.type === "entity.parse.failed") {
+    return res.status(400).json({
+      message: "รูปแบบ JSON ไม่ถูกต้อง",
+    });
+  }
+
+  console.error(err);
+
+  res.status(500).json({
+    message: "เกิดข้อผิดพลาดภายใน server",
+  });
+});
+
 app.listen(3000, "127.0.0.1", () => {
   console.log("เปิด server http://127.0.0.1:3000");
 });
